@@ -1,0 +1,27 @@
+email:
+  model_name_or_path: "roberta-base"
+  output_dir: "models/email-roberta"
+  dataset_dir: "data/tokenized/email"
+  num_labels: 3
+  max_length: 512
+  learning_rate: 2e-5
+  num_train_epochs: 4
+  per_device_train_batch_size: 8
+  per_device_eval_batch_size: 16
+  warmup_ratio: 0.1
+  gradient_accumulation_steps: 2
+  weight_decay: 0.01
+
+url:
+  model_name_or_path: "roberta-base"
+  output_dir: "models/url-roberta"
+  dataset_dir: "data/tokenized/url"
+  num_labels: 2
+  max_length: 128
+  learning_rate: 2e-5
+  num_train_epochs: 4
+  per_device_train_batch_size: 32
+  per_device_eval_batch_size: 16
+  warmup_ratio: 0.1
+  gradient_accumulation_steps: 1
+  weight_decay: 0.01

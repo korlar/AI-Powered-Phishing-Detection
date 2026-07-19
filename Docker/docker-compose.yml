@@ -1,0 +1,50 @@
+services:
+  backend:
+    build:
+      context: ..
+      dockerfile: Docker/Dockerfile
+    image: phishing-detection-roberta:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - ..:/workspace
+    env_file:
+      - ../.env
+    environment:
+      - PYTHONPATH=/workspace
+    command: uvicorn backend.main:app --host 0.0.0.0 --port 8000
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sSf http://localhost:8000/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+      
+    # Enables GPU access for model inference
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
+
+  frontend:
+    depends_on:
+      backend:
+        condition: service_healthy
+    build:
+      context: ..
+      dockerfile: Docker/Dockerfile
+    image: phishing-detection-roberta:latest
+    ports:
+      - "8501:8501"
+    volumes:
+      # This bind mount syncs your local directory with the container's /workspace directory.
+      - ..:/workspace
+    env_file:
+      - ../.env
+    environment:
+      - PYTHONPATH=/workspace
+      - BACKEND_URL=http://backend:8000
+    command: streamlit run frontend/streamlit_app.py --server.address=0.0.0.0

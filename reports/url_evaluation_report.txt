@@ -1,0 +1,22 @@
+Loading model from models/url-roberta...
+Loading test data from data/processed/url_test.csv...
+Running evaluation...
+
+==================================================
+CONFUSION MATRIX: models/url-roberta
+==================================================
+[[ 99846   2878]
+ [  4940 104145]]
+
+==================================================
+CLASSIFICATION REPORT
+==================================================
+              precision    recall  f1-score   support
+
+  Legitimate       0.95      0.97      0.96    102724
+    Phishing       0.97      0.95      0.96    109085
+
+    accuracy                           0.96    211809
+   macro avg       0.96      0.96      0.96    211809
+weighted avg       0.96      0.96      0.96    211809
+

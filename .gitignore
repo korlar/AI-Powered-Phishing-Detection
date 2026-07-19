@@ -1,0 +1,42 @@
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.env
+.foglamp/
+
+data/raw/
+data/processed/
+data/tokenized/
+models/
+outputs/
+runs/
+wandb/
+
+*.pt
+*.bin
+*.safetensors
+*.ckpt
+*.log
+*.pyc
+*.pyo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Databases
+*.db
+*.sqlite3
+*.db-journal
+*.sqlite
+
+# Python packaging
+*.egg-info/
+dist/
+build/
+
+# Testing artifacts
+.hypothesis/
