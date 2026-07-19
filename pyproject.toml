@@ -1,0 +1,53 @@
+[project]
+name = "phishing-detection-roberta"
+version = "0.1.0"
+description = "AI-Powered Phishing Detection using fine-tuned RoBERTa models for email and URL classification."
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Kolade Giwa"}]
+readme = "README.md"
+keywords = ["phishing", "detection", "roberta", "nlp", "security", "machine-learning", "fastapi"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "Topic :: Security",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/kolade-giwa/phishing-detection-roberta"
+Documentation = "https://github.com/kolade-giwa/phishing-detection-roberta#readme"
+Issues = "https://github.com/kolade-giwa/phishing-detection-roberta/issues"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP"]
+ignore = ["E501"]  # Line length handled by formatter
+
+[tool.ruff.lint.isort]
+known-first-party = ["src", "backend"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-v --tb=short"
+
+[tool.mypy]
+python_version = "3.10"
+explicit_package_bases = true
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
